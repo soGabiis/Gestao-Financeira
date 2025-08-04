@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestão Financeira - Investimentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">📊 Investimentos Detalhados</h1>
+
+    <!-- Formulário de um novo investimento -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>➕ Novo Investimento</span>
+      </div>
+      <div class="card-body">
+        <form id="form-investimento" class="row gy-2 gx-3 align-items-end">
+          <div class="col-md-4">
+            <label for="nome" class="form-label">Ticker (ex: PETR4)</label>
+            <input type="text" id="nome" name="nome" class="form-control" required />
+          </div>
+          <div class="col-md-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <select id="tipo" name="tipo" class="form-select">
+              <option value="Ação">Ação</option>
+              <option value="FII">Fundo Imobiliário</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input type="number" step="1" id="quantidade" name="quantidade" class="form-control" required />
+          </div>
+          <div class="col-md-2 text-end">
+            <button type="submit" class="btn btn-success w-100">Adicionar</button>
+          </div>
+
+          <div class="col-12 mt-3 d-flex align-items-center gap-2">
+            <div id="spinner-cotacao" class="spinner-border text-primary d-none" role="status" style="width: 1.5rem; height: 1.5rem;"></div>
+            <div id="resultado-cotacao" class="fs-6 fw-bold"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tabela de investimentos -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-secondary text-white">📋 Tabela de Investimentos</div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-striped" id="tabela-investimentos">
+          <thead class="table-light">
+            <tr>
+              <th>Ativo</th>
+              <th>Tipo</th>
+              <th>Quantidade</th>
+              <th>Valor Total (R$)</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+  <div class="d-flex justify-content-end">
+    <div class="form-group">
+      <label for="filtroPeriodo">Filtrar por:</label>
+      <select id="filtroPeriodo" class="form-control">
+        <option value="mensal" selected>Mensal</option>
+        <option value="anual">Anual</option>
+        <option value="todos">Todos os períodos</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+    <!-- Gráfico -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-info text-white">📈 Gráfico de Crescimento</div>
+      <div class="card-body">
+        <canvas id="grafico-investimentos" height="100"></canvas>
+      </div>
+    </div>
+
+    <!-- Simulador de Juros Compostos -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-dark text-white">🧮 Simulador de Juros Compostos (em breve)</div>
+      <div class="card-body">
+        <p class="text-muted">Aqui você poderá simular o crescimento dos seus investimentos ao longo do tempo.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">← Voltar ao Início</a>
+    </div>
+  </div>
+
+  <script type="module" src="{{ url_for('static', filename='js/investimentos.js') }}"></script>
+</body>
+</html>

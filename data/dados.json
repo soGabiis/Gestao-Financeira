@@ -1,0 +1,47 @@
+{
+    "gastos": [
+        {
+            "nome": "Aluguel",
+            "valor": 1200,
+            "data": "2025-07-01"
+        },
+        {
+            "nome": "Mercado",
+            "valor": 600,
+            "data": "2025-07-08"
+        },
+        {
+            "nome": "Conta Luz",
+            "valor": 150.75,
+            "data": "2025-07-10"
+        },
+        {
+            "nome": "Internet",
+            "valor": 120,
+            "data": "2025-07-15"
+        },
+        {
+            "nome": "Cartão de Crédito",
+            "valor": 800,
+            "data": "2025-07-25"
+        },
+        {
+            "nome": "Cinema",
+            "valor": 80,
+            "data": "2025-08-01"
+        }
+    ],
+    "investimentos": [
+        {
+            "nome": "MXRF11",
+            "tipo": "FII",
+            "quantidade": 8,
+            "valor": 75.2,
+            "data": "2025-08-04"
+        }
+    ],
+    "fixos": {
+        "ganhos": 3500.0,
+        "gastos": 1200.0
+    }
+}
