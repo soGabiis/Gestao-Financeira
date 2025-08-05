@@ -20,40 +20,42 @@
     <div id="resumo" class="row text-center g-4">
 
       <!-- Ganhos -->
-      <div class="col-md-3">
-        <div class="card bg-success text-white card-clickable" data-tipo="ganhos">
-          <div class="card-body">
-            <h5>Ganhos</h5>
-            <p id="ganhos">R$ 0,00</p>
-            <div class="overlay d-none">
-              <canvas class="grafico" width="300" height="300"></canvas>
-              <div class="tipo-grafico mt-2">
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="pie">🍕</button>
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="bar">📊</button>
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="line">📈</button>
-              </div>
-            </div>
-          </div>
+<div class="col-md-3">
+  <div class="card bg-success text-white card-clickable" data-tipo="ganhos"
+       onclick="location.href='{{ url_for('ganhos') }}'" style="cursor: pointer;">
+    <div class="card-body">
+      <h5>Ganhos</h5>
+      <p id="ganhos">R$ 0,00</p>
+      <div class="overlay d-none">
+        <canvas class="grafico" width="300" height="300"></canvas>
+        <div class="tipo-grafico mt-2">
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="pie">🍕</button>
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="bar">📊</button>
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="line">📈</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Gastos -->
-      <div class="col-md-3">
-        <div class="card bg-danger text-white card-clickable" data-tipo="gastos">
-          <div class="card-body">
-            <h5>Gastos</h5>
-            <p id="gastos">R$ 0,00</p>
-            <div class="overlay d-none">
-              <canvas class="grafico" width="300" height="300"></canvas>
-              <div class="tipo-grafico mt-2">
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="pie">🍕</button>
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="bar">📊</button>
-                <button class="btn btn-light btn-sm tipo-btn" data-formato="line">📈</button>
-              </div>
-            </div>
-          </div>
+<!-- Gastos -->
+<div class="col-md-3">
+  <div class="card bg-danger text-white card-clickable" data-tipo="gastos"
+       onclick="location.href='{{ url_for('gastos') }}'" style="cursor: pointer;">
+    <div class="card-body">
+      <h5>Gastos</h5>
+      <p id="gastos">R$ 0,00</p>
+      <div class="overlay d-none">
+        <canvas class="grafico" width="300" height="300"></canvas>
+        <div class="tipo-grafico mt-2">
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="pie">🍕</button>
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="bar">📊</button>
+          <button class="btn btn-light btn-sm tipo-btn" data-formato="line">📈</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
       <!-- Investimentos -->
       <div class="col-md-3">
@@ -74,11 +76,11 @@
       </div>
 
       <!-- Saldo -->
-      <div class="col-md-3">
-        <div class="card bg-secondary text-white card-clickable" data-tipo="saldo">
-          <div class="card-body">
-            <h5>Saldo</h5>
-            <p id="saldo">R$ 0,00</p>
+<div class="col-md-3">
+  <div class="card bg-secondary text-white card-clickable" data-tipo="saldo" onclick="location.href='{{ url_for('saldo') }}'" style="cursor:pointer;">
+    <div class="card-body">
+      <h5>Saldo</h5>
+      <p id="saldo">R$ 0,00</p>
             <div class="overlay d-none">
               <canvas class="grafico" width="300" height="300"></canvas>
               <div class="tipo-grafico mt-2">
@@ -94,7 +96,7 @@
     </div>
 
     <hr />
-    <p class="text-muted">🔍 Clique em qualquer card para visualizar os gráficos e alterar o formato.</p>
+    <p class="text-muted">🔍 Clique em qualquer card para visualizar mais detalhes.</p>
   </div>
 
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("/api/dados")
     .then(res => res.json())
     .then(data => {
-      const ganhos = data.fixos?.ganhos || 0;
+      const ganhos = somaValores(data.ganhos || []);
       const gastos = somaValores(data.gastos || []);
       const investimentos = somaValores(data.investimentos || []);
       const saldo = ganhos - gastos + investimentos;
@@ -62,8 +62,14 @@ function desenharGrafico(tipo, canvas, formato, data) {
   let labels = [];
 
   if (tipo === "ganhos") {
-    valores = [data.fixos.ganhos];
-    labels = ["Ganhos Fixos"];
+    // Mostrar todos os ganhos cadastrados no gráfico
+    valores = (data.ganhos || []).map(g => g.valor);
+    labels = (data.ganhos || []).map(g => g.nome);
+    // Se não tiver ganhos cadastrados, mostra o ganho fixo
+    if (valores.length === 0 && data.fixos) {
+      valores = [data.fixos.ganhos];
+      labels = ["Ganhos Fixos"];
+    }
   } else if (tipo === "gastos") {
     valores = data.gastos.map(g => g.valor);
     labels = data.gastos.map(g => g.nome);
@@ -71,7 +77,7 @@ function desenharGrafico(tipo, canvas, formato, data) {
     valores = data.investimentos.map(i => i.valor);
     labels = data.investimentos.map(i => i.nome);
   } else if (tipo === "saldo") {
-    const ganhos = data.fixos.ganhos;
+    const ganhos = somaValores(data.ganhos || []);
     const gastos = somaValores(data.gastos);
     const investimentos = somaValores(data.investimentos);
     valores = [ganhos, -gastos, investimentos];
@@ -99,3 +105,4 @@ function desenharGrafico(tipo, canvas, formato, data) {
     }
   });
 }
+
