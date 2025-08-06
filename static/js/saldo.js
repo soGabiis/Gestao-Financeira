@@ -64,6 +64,9 @@ function aplicarFiltro(data, periodo) {
   const somaGanhos = somaValores(ganhos);
   const somaGastos = somaValores(gastos);
   const somaInvestimentos = somaValores(investimentos);
+  
+  atualizarCardSaldo(somaGanhos, somaGastos, somaInvestimentos);
+
 
   atualizarGraficoInterativo(ganhos, gastos, investimentos);
   atualizarAlertasComplexos(ganhos, gastos, investimentos, somaGanhos, somaGastos, somaInvestimentos);
@@ -288,4 +291,13 @@ function mostrarErro(mensagem) {
 
 function formatarReais(valor) {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function atualizarCardSaldo(ganhos, gastos, investimentos) {
+  const saldo = ganhos - gastos + investimentos;
+  const cardSaldo = document.getElementById("valorSaldo");
+
+  if (cardSaldo) {
+    cardSaldo.textContent = formatarReais(saldo);
+  }
 }
