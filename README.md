@@ -14,7 +14,7 @@ Aplicativo de controle financeiro pessoal para computador, desenvolvido com **Py
 - ✅ Interface responsiva com **Bootstrap 5**
 - ✅ Integração com a **API Alpha Vantage** para consulta de ações e FIIs
 - ✅ Cálculo automático do saldo atual
-- ✅ Gráfico de **pizza** mostrando proporção de gastos por categoria
+- ✅ Gráficos intuitivos
 - ✅ Alertas personalizados (ex: "Você gastou mais do que ganhou este mês")
 
 ---
