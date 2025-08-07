@@ -1,36 +1,9 @@
 {
-    "gastos": [
-        {
-            "nome": "Aluguel",
-            "valor": 1000,
-            "data": "2025-08-05"
-        }
-    ],
-    "investimentos": [
-        {
-            "nome": "MXRF11",
-            "tipo": "FII",
-            "quantidade": 8,
-            "valor": 75.2,
-            "data": "2025-08-04"
-        },
-        {
-            "nome": "ITUB3",
-            "tipo": "Ação",
-            "quantidade": 10,
-            "valor": 315.5,
-            "data": "2025-08-05"
-        }
-    ],
+    "gastos": [],
+    "investimentos": [],
     "fixos": {
         "ganhos": 3500.0,
         "gastos": 1200.0
     },
-    "ganhos": [
-        {
-            "nome": "Aluguelzinho",
-            "valor": 1000,
-            "data": "2025-08-05"
-        }
-    ]
+    "ganhos": []
 }
