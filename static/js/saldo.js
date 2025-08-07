@@ -39,6 +39,7 @@ function montarFiltroPeriodo() {
     btn.className = "btn btn-outline-primary";
     btn.textContent = opcao.label;
     btn.dataset.periodo = opcao.id;
+
     btn.onclick = () => {
       const botoes = container.querySelectorAll("button");
       botoes.forEach(b => b.classList.remove("active"));
@@ -46,14 +47,19 @@ function montarFiltroPeriodo() {
 
       carregarDados().then(data => aplicarFiltro(data, opcao.id));
     };
+
+    // Ativa "mês atual" por padrão
+    if (opcao.id === "mes_atual") {
+      btn.classList.add("active");
+    }
+
     container.appendChild(btn);
   });
-
-  container.querySelector("button[data-periodo='mes_atual']").classList.add("active");
 
   const containerPai = document.querySelector(".container > h1");
   containerPai.insertAdjacentElement("afterend", container);
 }
+
 
 // Aplica filtro e atualiza visualizações
 function aplicarFiltro(data, periodo) {
@@ -77,33 +83,38 @@ function aplicarFiltro(data, periodo) {
 }
 
 // Filtra itens pela data conforme o período
-function filtrarPorPeriodo(lista, periodo) {
+function filtrarPorPeriodo(data, periodo) {
   const hoje = new Date();
-  const dataLimite = new Date(hoje);
+  const anoAtual = hoje.getFullYear();
+  const mesAtual = hoje.getMonth(); // 0 = janeiro
 
-  switch (periodo) {
-    case "7_dias":
-      dataLimite.setDate(hoje.getDate() - 7);
-      break;
-    case "30_dias":
-      dataLimite.setDate(hoje.getDate() - 30);
-      break;
-    case "mes_atual":
-      dataLimite.setDate(1);
-      break;
-    case "ano_atual":
-      dataLimite.setMonth(0, 1);
-      break;
-    case "todos":
-      return lista;
-    default:
-      return lista;
-  }
+  return data.filter(item => {
+    const [ano, mes, dia] = item.data.split('-').map(Number);
+    const dataItem = new Date(ano, mes - 1, dia); // mês -1 porque começa do zero
 
-  return lista.filter(item => {
-    if (!item.data) return false;
-    const d = new Date(item.data);
-    return d >= dataLimite && d <= hoje;
+    switch (periodo) {
+      case "7_dias":
+        const seteDiasAtras = new Date();
+        seteDiasAtras.setDate(hoje.getDate() - 7);
+        return dataItem >= seteDiasAtras && dataItem <= hoje;
+
+      case "30_dias":
+        const trintaDiasAtras = new Date();
+        trintaDiasAtras.setDate(hoje.getDate() - 30);
+        return dataItem >= trintaDiasAtras && dataItem <= hoje;
+
+      case "mes_atual":
+        return (
+          dataItem.getMonth() === mesAtual &&
+          dataItem.getFullYear() === anoAtual
+        );
+
+      case "ano_atual":
+        return dataItem.getFullYear() === anoAtual;
+
+      default:
+        return true;
+    }
   });
 }
 
